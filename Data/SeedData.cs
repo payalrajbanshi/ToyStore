@@ -7,7 +7,6 @@ namespace ToyStore.Data
 {
     public class SeedData
     {
-        // Seed categories and products synchronously
         public static void Initialize(AppDbContext context)
         {
             if (!context.Categories.Any())
@@ -41,10 +40,7 @@ namespace ToyStore.Data
                 );
                 context.SaveChanges();
             }
-        }
-
-        // Async method to seed Identity roles and default admin user
-        public static async Task InitializeAsync(IServiceProvider services)
+        }        public static async Task InitializeAsync(IServiceProvider services)
         {
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
@@ -56,7 +52,6 @@ namespace ToyStore.Data
             await roleManager.CreateAsync(new IdentityRole(roleName));
     }
 
-            // Seed default admin user
             var adminEmail = "admin@toystore.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
@@ -67,12 +62,12 @@ namespace ToyStore.Data
                     UserName = adminEmail,
                     Email = adminEmail,
                     EmailConfirmed = true,
-                    PhoneNumber = "9826961234",  // Add phone number
-                    Address = "Admin Address",    // Add address (make sure this property exists)
+                    PhoneNumber = "9826961234", 
+                    Address = "Admin Address",    
                     FullName= "Admin User"
                 };
 
-                var result = await userManager.CreateAsync(adminUser, "Admin@1234"); // Strong password recommended
+                var result = await userManager.CreateAsync(adminUser, "Admin@1234"); 
 
                 if (result.Succeeded)
                 {

@@ -4,7 +4,7 @@
     var categories = ViewBag.Categories as List<ToyStore.Models.Category>;
 }
 
-<h2 class="mb-4">✏️ Edit Toy</h2>
+<h2 class="mb-4"> Edit Toy</h2>
 
 <form asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
@@ -41,8 +41,8 @@
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">💾 Update</button>
-    <a asp-action="Index" class="btn btn-secondary">↩️ Back</a>
+    <button type="submit" class="btn btn-primary"> Update</button>
+    <a asp-action="Index" class="btn btn-secondary"> Back</a>
 </form>
 
 @section Scripts {

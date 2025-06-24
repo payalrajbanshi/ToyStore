@@ -13,22 +13,16 @@ namespace ToyStore.Controllers
         {
             _context = context;
         }
-
-        // View all products
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.Include(p => p.Category).ToListAsync();
             return View(products);
         }
-
-        // Show create form
         public IActionResult Create()
         {
             ViewBag.Categories = _context.Categories.ToList();
             return View();
         }
-
-        // Add new toy
         [HttpPost]
         public async Task<IActionResult> Create(Product product)
         {
@@ -42,8 +36,6 @@ namespace ToyStore.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
-
-        // Show edit form
         public async Task<IActionResult> Edit(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -52,8 +44,6 @@ namespace ToyStore.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
-
-        // Update toy
         [HttpPost]
         public async Task<IActionResult> Edit(Product product)
         {
@@ -67,16 +57,12 @@ namespace ToyStore.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             return View(product);
         }
-
-        // Confirm delete
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
             if (product == null) return NotFound();
             return View(product);
         }
-
-        // Delete confirmed
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
