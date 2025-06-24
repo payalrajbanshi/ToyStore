@@ -1,0 +1,47 @@
+## Ignore build results
+bin/
+obj/
+out/
+
+## Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Ignore Rider project files
+.idea/
+
+## VS Code settings
+.vscode/
+
+## Ignore sensitive config files (if needed)
+appsettings.Development.json
+
+## Ignore ASP.NET Core secrets folder
+**/secrets.json
+
+## Ignore logs
+*.log
+logs/
+Log/
+
+## Ignore EF Core migration snapshot files (optional)
+**/*ModelSnapshot.cs
+
+## Ignore database files (if SQLite or local DB used)
+*.db
+*.mdf
+*.ldf
+
+## Ignore publish output
+publish/
+*.Publish.xml
+
+## Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+## Ignore static cache
+wwwroot/lib/

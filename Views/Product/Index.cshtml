@@ -1,0 +1,25 @@
+@model List<ToyStore.Models.Product>
+
+<h2 class="mb-4">🧸 Available Toys</h2>
+<div class="row">
+@foreach (var toy in Model)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-lg rounded-4 h-100">
+            @* <img src="@toy.ImageUrl" class="card-img-top p-3" style="height: 250px; object-fit: contain;" alt="@toy.Name"> *@
+            @* <img src="/images/teddy.png" style="height: 250px;" /> *@
+            @* <img src="@toy.ImageUrl" style="height: 250px;" /> *@
+            <img src="@(string.IsNullOrEmpty(toy.ImageUrl) ? "/images/teddy.png" : toy.ImageUrl)" style="height: 250px;" />
+
+            <div class="card-body text-center">
+                <h5 class="card-title">@toy.Name</h5>
+                <p class="card-text">Price: Rs. @toy.Price</p>
+                <p><span class="badge bg-info">@toy.Category?.Name</span></p>
+                <a href="/Cart/Add/@toy.Id" class="btn btn-success">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </a>
+            </div>
+        </div>
+    </div>
+}
+</div>

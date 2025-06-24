@@ -1,0 +1,31 @@
+@model List<ToyStore.Models.Product>
+
+<h2>🛠️ Manage Toys</h2>
+<a class="btn btn-primary mb-3" asp-action="Create">➕ Add New Toy</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var toy in Model)
+        {
+            <tr>
+                <td><img src="@toy.ImageUrl" width="80" /></td>
+                <td>@toy.Name</td>
+                <td>Rs. @toy.Price</td>
+                <td>@toy.Category?.Name</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@toy.Id">✏️ Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@toy.Id">🗑️ Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

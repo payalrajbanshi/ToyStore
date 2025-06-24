@@ -1,0 +1,49 @@
+@model List<ToyStore.Models.CartItem>
+
+<h2>Your Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price (Rs.)</th>
+                <th>Total (Rs.)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product?.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product?.Price</td>
+                    <td>@(item.Quantity * item.Product?.Price ?? 0)</td>
+                    <td>
+                        <a asp-action="Remove" asp-route-id="@item.ProductId" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash"></i> Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                <td colspan="2">
+                    <strong>@Model.Sum(i => i.Quantity * (i.Product?.Price ?? 0)) Rs.</strong>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a asp-action="Clear" class="btn btn-warning">Clear Cart</a>
+   // <a href="/Product" class="btn btn-primary">Continue Shopping</a>
+   <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+
+}
