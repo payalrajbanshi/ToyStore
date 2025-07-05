@@ -32,14 +32,14 @@ app.UseRouting();
 
 app.UseSession();
 
-app.UseAuthentication();  
+app.UseAuthentication();
+app.UseAuthorization();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
     SeedData.Initialize(context);
-    await SeedData.InitializeAsync(services);  // Make sure SeedData has async method
-
+    await SeedData.InitializeAsync(services);  
 }
 app.MapControllerRoute(
     name: "default",
